@@ -3,6 +3,7 @@
 import styles from './home.module.css';
 import Header from '../../components/header';
 import Footer from '../../components/footer';
+import { FaMagnifyingGlass } from "react-icons/fa6";
 
 const Home = () => {
   return (
@@ -18,18 +19,20 @@ const Home = () => {
             </div>
             <div className={styles.search}>
               <div className={styles.tabContainer}>
-                <div className={styles.tab}>Aba 1</div>
-                <div className={styles.tab}>Aba 2</div>
+                <div className={styles.tab1}>Bikes</div>
+                <div className={styles.tab2}>Peças e acessórios</div>
+                <button className={styles.button}><FaMagnifyingGlass className='w-40 text-6xl'/>Pesquisar</button>
               </div>
               <input
-              type="search"
-              id="search"
-              name="search"
-              placeholder="Digite aqui o que você procura..."
-              className={styles.input}
-              required
+                type="search"
+                id="search"
+                name="search"
+                placeholder="Digite aqui o que você procura..."
+                className={styles.input}
+                required
+                
               />
-              <button className={styles.button}>Buscar</button>
+              <div className="absolute left-10 right-60 h-[1px] bg-gray-200 mt-36" />
             </div>
           </div>
         </div>
