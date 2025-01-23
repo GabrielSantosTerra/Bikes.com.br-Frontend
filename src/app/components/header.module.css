@@ -1,0 +1,105 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background-color: #ffffff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+}
+
+.sectionA,
+.sectionB,
+.sectionC {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.sectionA {
+  justify-content: center;
+}
+.sectionA :hover{
+  transform: scale(1.1);
+}
+
+.sectionB {
+  justify-content: center;
+}
+.sectionB :hover{
+  color: black;
+  font-weight: 500;
+}
+
+.sectionC {
+  justify-content: flex-end;
+}
+
+.sectionD {
+  justify-content: flex-end;
+}
+
+.logo {
+  height: 50px;
+  width: auto;
+}
+
+.navLinks {
+  display: flex;
+  gap: 15px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #333;
+}
+
+.navLinks a {
+  text-decoration: none;
+  color: #333;
+  transition: color 0.3s ease;
+}
+
+.navLinks a:hover {
+  color: #09BC8A;
+}
+
+.icon,
+.socialIcon {
+  height: 27px;
+  width: auto;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+.icon:hover,
+.socialIcon:hover {
+  opacity: 0.8;
+  transform: scale(1.1);
+}
+
+.avatarIcon {
+  border-radius: 50%;
+  object-fit: cover;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+  height: 30px;
+}
+
+.avatarIcon:hover {
+  opacity: 0.8;
+  transform: scale(1.1);
+}
+
+.dropdownTitle {
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.dropdownEmail {
+  font-size: 0.85rem;
+  color: #555;
+}
