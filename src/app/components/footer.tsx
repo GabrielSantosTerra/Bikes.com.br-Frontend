@@ -1,7 +1,3 @@
-import facebook from "@/assets/facebook.png"
-import instagram from "@/assets/instagram.png"
-import whatsapp from "@/assets/whatsapp.png"
-import Logo from "@/assets/LO.png"
 import styles from "./footer.module.css";
 import { FaArrowRightToBracket } from "react-icons/fa6";
 import { useState } from "react";
