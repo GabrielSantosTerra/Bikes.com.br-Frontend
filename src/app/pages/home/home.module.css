@@ -9,7 +9,7 @@
   padding: 20px;
 }
 
-.section {
+.section1 {
   margin-bottom: 40px;
   position: relative;
 }
@@ -21,7 +21,7 @@
 }
 
 .imageContainer {
-  position: relative; /* Define o contexto para elementos posicionados dentro */
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -32,7 +32,7 @@
   height: auto;
 }
 
-.overlayText{
+.overlayText {
   position: absolute;
   top: 130px;
   color: white;
@@ -40,46 +40,56 @@
   font-weight: 700;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
+
 .search {
   position: absolute;
   top: 90%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 950px;
-  background-color: #FFFFFF;
-  border-radius: 30px;
+  width: 750px;
+  height: 120px;
+  background-color: #ffffff;
+  border-radius: 20px;
   display: flex;
-  flex-direction: column; /* Coluna principal */
+  flex-direction: column;
   align-items: center;
   z-index: 1;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .tabContainer {
   display: flex;
+  width: 100%;
 }
 
 .tab1,
 .tab2 {
-  flex: 1; /* Faz com que as abas ocupem o mesmo espaço */
+  flex: 1;
   text-align: center;
-  padding: 20px 20px;
+  padding: 10px;
   font-size: 1rem;
   font-weight: bold;
   cursor: pointer;
-  transition: background-color 0.3s ease;
-  height: 65px;
-  width: 378px;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+  height: 40px;
 }
 
 .tab1 {
-  background-color: #09BC8A;
-  color: white;
+  background-color: #f5f5f5;
+  color: #868686;
   border-top-left-radius: 10px;
 }
 
 .tab2 {
-  background-color: #F5F5F5;
+  background-color: #f5f5f5;
   color: #868686;
+}
+
+.active {
+  background-color: #09bc8a;
+  color: white;
 }
 
 .tab1:hover,
@@ -89,44 +99,485 @@
 
 .input {
   z-index: 2;
-  flex: 1; /* Faz o input ocupar todo o espaço disponível */
-  font-size: 1rem;
-  position: absolute;
-  top: 100px;
-  right: 300px;
+  font-size: 0.9rem;
   border: none;
-  width: 600px;
-  outline: none; /* Remove o contorno ao focar */
+  width: 85%;
+  padding: 8px 10px;
+  margin-top: 10px;
+  border-radius: 5px;
+  outline: none;
+  height: 40px;
 }
-.input:focus{
-  outline: none; /* Remove o contorno de foco */
-  box-shadow: none; /* Garante que não haja sombra ao focar */
+
+.input:focus {
+  outline: none;
+  box-shadow: none;
 }
 
 .buttonContainer {
   display: flex;
-  align-items: flex-start; /* Alinha o botão ao início */
-  margin-left: 10px; /* Espaço entre input e botão */
+  align-items: flex-start;
+  margin-left: 10px;
 }
 
 .button {
-  position: absolute;
-  background-color: #09BC8A;
+  background: linear-gradient(to right, #09bc8a, #0c1b33);
   color: white;
-  padding: 10px 20px;
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  position: relative; /* Para ajustes finos */
-  height: 175px;
-  width: 193px;
-  z-index: 3;
+  height: 40px;
+  width: 150px;
   border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px;
-  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .button:hover {
+  background-color: #0c1b33;
+}
+
+.section2 {
+  margin-top: 40px;
+  padding: 20px;
+  text-align: center;
+}
+
+.title {
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+}
+
+.cardGrid {
+  display: grid;
+  align-items: center;
+  grid-template-columns: repeat(3, 1fr);
+  justify-content: center;
+  gap: 20px 5px;
+  margin: 0 auto;
+  width: 700px;
+}
+
+.card {
+  background-color: #ffffff;
+  border-radius: 0.375rem;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  text-align: left;
+  width: 200px;
+  height: 160px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+}
+
+.announcement1 {
+  grid-row: 1 / span 2;
+  grid-column: 4;
+  background-color: #f8f8f8;
+  width: 220px;
+  height: 360px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cardImage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0.375rem;
+}
+
+.section3 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.cardContainer {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.highlightCard {
+  background-color: #ffffff;
+  border-radius: 0.375rem;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  text-align: left;
+  width: 450px;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+}
+
+.highlightImage {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.highlightTitle {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+}
+
+.highlightPrice {
+  font-size: 30px;
+  font-weight: bold;
+  color: #09bc8a;
+}
+
+.highlightInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.highlightButton {
+  background: linear-gradient(to right, #09bc8a, #0c1b33);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  display: block;
+  margin-top: 10px;
+}
+
+.highlightButton:hover {
+  background-color: #0c1b33;
+}
+
+.announcement2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f8f8f8;
+  height: 220px;
+  width: 920px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.section4 {
+  background-color: #09bc8a;
+  width: 100%;
+  padding: 60px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.section4Container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+}
+
+.section4Title {
+  color: white;
+  font-size: 28px;
+  font-weight: bold;
+  text-align: center;
+  width: 100%;
+}
+
+.boldText {
+  font-weight: 900;
+}
+
+.cardGridSection4 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.cardSection4 {
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  text-align: center;
+  width: 220px;
+  height: 280px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+}
+
+.cardImageSection4 {
+  width: 100%;
+  height: 150px;
+  object-fit: contain;
+}
+
+.cardTitle {
+  font-weight: 700;
+  color: #09bc8a;
+  text-align: center;
+  margin-top: 10px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.cardButton {
+  background: linear-gradient(to right, #09bc8a, #0c1b33);
+  color: white;
+  padding: 8px 15px;
+  border-radius: 5px;
+  font-weight: bold;
+  text-align: center;
+  cursor: pointer;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.cardButton:hover {
+  background-color: #0c1b33;
+}
+
+.arrowIcon {
+  font-size: 14px;
+}
+
+.section5 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 60px;
+}
+
+.section5Title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.cardContainer5 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  justify-content: center;
+}
+
+.highlightCard5 {
+  background-color: #ffffff;
+  border-radius: 0.375rem;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  text-align: left;
+  width: 350px;
+  height: 380px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+}
+
+.highlightImage5 {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.highlightTitle5 {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+}
+
+.highlightPrice5 {
+  font-size: 30px;
+  font-weight: bold;
+  color: #09bc8a;
+}
+
+.highlightInfo5 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.highlightButton5 {
+  background: linear-gradient(to right, #09bc8a, #0c1b33);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  display: block;
+  margin-top: 10px;
+}
+
+.highlightButton5:hover {
+  background-color: #0c1b33;
+}
+
+.section6 {
+  background-color: #ebf1f0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 60px;
+  padding: 40px 0;
+}
+
+.section6Title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.cardContainer6 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  justify-content: center;
+}
+
+.highlightCard6 {
+  background-color: #ffffff;
+  border-radius: 0.375rem;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  text-align: left;
+  width: 350px;
+  height: 380px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+}
+
+.highlightImage6 {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.highlightTitle6 {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+}
+
+.highlightPrice6 {
+  font-size: 30px;
+  font-weight: bold;
+  color: #09bc8a;
+}
+
+.highlightInfo6 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.highlightButton6 {
+  background: linear-gradient(to right, #09bc8a, #0c1b33);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  display: block;
+  margin-top: 10px;
+}
+
+.highlightButton6:hover {
+  background-color: #0c1b33;
+}
+
+.section7 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 0;
+  text-align: center;
+}
+
+.section7Title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #0C1B33;
+  margin-bottom: 20px;
+}
+
+.section7Grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  width: 80%;
+  max-width: 900px;
+}
+
+.section7Card {
+  background-color: #09BC8A;
+  width: 100%;
+  height: 200px;
+  border-radius: 8px;
+}
+
+.instagramButton {
+  background: linear-gradient(to right, #09BC8A, #0C1B33);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-weight: bold;
+  text-align: center;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  gap: 8px;
+}
+
+.instagramButton:hover {
   background-color: #0C1B33;
 }
