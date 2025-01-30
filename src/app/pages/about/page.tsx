@@ -6,17 +6,15 @@ import styles from './about.module.css';
 const About = () => {
   return(
     <>
-<div className={styles.conteiner}>
+ <div className={styles.conteiner}> 
   <Header />
   <main className={styles.main}>
-    {/* Conteúdo principal */}
-    <div className={styles.imageContainer}>
+     <div className={styles.imageContainer}>
       <img
         src="/img/fundo-about.png"
         alt="Fundo"
         className={styles.backgroundImage}
       />
-      <h1 className={styles.fraseImagem}>Quem somos</h1>
     </div>
     <div className={styles.descricao}>
       <h1 className={styles.Titulo}>Quem somos?</h1>
@@ -43,9 +41,9 @@ const About = () => {
         <img src="/img/Group 36.jpg" alt="Fundo" />
       </div>
     </div>
-  </main>
-</div>
-<Footer />
+  </main> 
+</div> 
+ <Footer />
 </>
   )
 }

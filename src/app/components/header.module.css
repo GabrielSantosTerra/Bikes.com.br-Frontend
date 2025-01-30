@@ -1,3 +1,4 @@
+/* Layout padrão (para telas grandes) */
 .header {
   position: fixed;
   top: 0;
@@ -8,8 +9,8 @@
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   display: flex;
   align-items: center;
+  padding: 30px 20px;
   justify-content: space-between;
-  padding: 10px 20px;
 }
 
 .sectionA,
@@ -21,25 +22,27 @@
 }
 
 .sectionA {
-  justify-content: center;
-}
-.sectionA :hover{
-  transform: scale(1.1);
+  position: absolute;
+  left: 20px; /* Fixa à esquerda */
+  top: 50%;
+  transform: translateY(-45%); /* Centraliza verticalmente */
 }
 
 .sectionB {
+  position: absolute;
+  left: 50%; /* Centraliza horizontalmente */
+  transform: translateX(-50%); /* Ajusta para centralização perfeita */
+  display: flex;
   justify-content: center;
-}
-.sectionB :hover{
-  color: black;
-  font-weight: 500;
+  gap: 20px;
 }
 
 .sectionC {
-  justify-content: flex-end;
-}
-
-.sectionD {
+  position: absolute;
+  right: 20px; /* Fixa à direita */
+  top: 50%;
+  transform: translateY(-50%); /* Centraliza verticalmente */
+  display: flex;
   justify-content: flex-end;
 }
 
@@ -63,7 +66,8 @@
 }
 
 .navLinks a:hover {
-  color: #09BC8A;
+  color: #000000;
+  font-weight: 700;
 }
 
 .icon,
@@ -93,13 +97,269 @@
   transform: scale(1.1);
 }
 
-.dropdownTitle {
-  font-size: 0.9rem;
-  font-weight: bold;
-  color: #333;
+/* Menu lateral (Sidebar) */
+.sideMenu {
+  position: fixed;
+  top: 0;
+  right: -250px; /* Começa fora da tela */
+  width: 200px;
+  height: 100%;
+  background-color: #ffffff;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+  transition: right 0.5s ease-in-out; /* Transição suave */
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
 }
 
-.dropdownEmail {
-  font-size: 0.85rem;
-  color: #555;
+.sideMenu.open {
+  right: 0; /* Move para dentro da tela */
+}
+
+.sideMenuNav {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  font-size: 1.2rem;
+  padding: 20px;
+}
+
+.sideMenuNav a {
+  text-decoration: none;
+  color: #000000;
+  transition: color 0.3s ease;
+  font-weight: 500;
+}
+
+.sideMenuNav a:hover {
+  color: #000;
+  font-weight: 700;
+}
+
+.sideMenuIcons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px;
+}
+
+.sideMenuIcons a {
+  display: flex;
+  align-items: center;
+}
+
+.sideMenuIcons img {
+  height: 30px;
+  margin-right: 10px;
+}
+
+
+.closeArrow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+}
+
+.closeArrow span {
+  display: block;
+  height: 3px;
+  width: 25px;
+  background: #000;
+  margin: 5px 0;
+}
+
+/* Responsividade */
+@media (max-width: 910px) {
+  .sectionB {
+    position: absolute;
+    left: 20%; /* Centraliza horizontalmente */
+    transform: translateX(20%); /* Ajusta para centralização perfeita */
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+  .dropdownTitle{
+    word-break: break-all;
+    font-size: medium;
+    font-weight: 600;
+  }
+  .dropdownEmail{
+    word-break: break-all;
+    font-size: medium;
+    font-weight: 600;
+    padding-bottom: 10px;
+  }
+}
+
+@media (max-width: 870px) {
+  .sectionB {
+    position: absolute;
+    left: 40%; /* Centraliza horizontalmente */
+    transform: translateX(-50%); /* Ajusta para centralização perfeita */
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+}
+
+@media (max-width: 720px) {
+  .sectionB {
+    display: none; /* Esconde os links na versão mobile */
+  }
+
+  .sectionC {
+    display: none; /* Esconde os ícones na versão mobile */
+  }
+
+  .hamburger {
+    display: flex; /* Mostra o ícone de hambúrguer */
+    flex-direction: column;
+    cursor: pointer;
+    justify-content: end;
+    align-items: end;
+    position: absolute; /* Garante que o hambúrguer fique posicionado de maneira absoluta */
+    right: 20px; /* Alinha o hambúrguer à direita */
+    top: 50%; /* Centraliza verticalmente */
+    transform: translateY(-50%); /* Ajusta para a centralização perfeita */
+  }
+
+  .hamburger span {
+    display: flex;
+    height: 3px;
+    width: 25px;
+    background: #000000;
+    margin: 3px 0;
+    transition: all 0.3s ease;
+    justify-content: end;
+    align-items: end;
+  }
+
+  .hamburger.open span:nth-child(1) {
+    transform: rotate(45deg);
+    transform-origin: top left;
+  }
+
+  .hamburger.open span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .hamburger.open span:nth-child(3) {
+    transform: rotate(-48deg);
+    transform-origin: bottom left;
+  }
+}
+
+@media (max-width: 340px) {
+  .sideMenu {
+    position: fixed;
+    top: 0;
+    right: -250px; /* Começa fora da tela */
+    width: 100px;
+    height: 100%;
+    background-color: #ffffff;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+    transition: right 0.5s ease-in-out; /* Transição suave */
+    z-index: 999;
+
+    .closeArrow {
+      font-size: 45px; /* Diminui o tamanho do botão de fechar */
+      padding-left: 40px;
+    }
+
+    .sideMenuNav {
+      font-size: 15px; /* Reduz o tamanho da fonte dos links no menu lateral */
+      gap: 15px; /* Ajusta o espaçamento entre os itens */
+    }
+    .linha{
+      position: absolute;
+      top: 235px;
+      right: -20px;
+      width: 100px; /* A linha ocupará toda a largura disponível */
+      padding-right: 120px;
+      height: 2px; /* A espessura da linha */
+      background-color: #ddd; /* Cor da linha, ajustada para um tom de cinza claro */
+      margin: 10px 0; /* Espaço acima e abaixo da linha */
+    }
+    .NameConfiguração{
+      font-size: 10px;
+      font-weight: 600;
+    }
+  }
+  
+}
+
+/* Botão de fechar no menu lateral */
+.closeArrow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+/* As três linhas do botão */
+.closeArrow span {
+  display: block;
+  height: 3px;
+  width: 20px;
+  background: #000;
+  margin: 5px 0;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Efeito de "X" quando o menu está aberto */
+.sideMenu.open .closeArrow span:nth-child(1) {
+  transform: translateY(17px) rotate(45deg);
+}
+
+.sideMenu.open .closeArrow span:nth-child(2) {
+  opacity: 0;
+}
+
+.sideMenu.open .closeArrow span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Ajuste o espaçamento entre o botão de fechar e os links */
+.sideMenu {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Alinha os elementos no topo */
+  padding-top: 50px; /* Ajuste do padding para controlar o espaço */
+}
+
+.closeArrow {
+  order: 1; /* Coloca a flecha antes dos links */
+  margin-bottom: 20px; /* Diminui o espaço entre a flecha e os links */
+  padding-right: 10px;
+}
+
+.sideMenuNav {
+  order: 2; /* Coloca os links abaixo da flecha */
+  gap: 10px; /* Diminui o espaçamento entre os links */
+}
+
+.sideMenuIcons {
+  gap: 10px; /* Reduz o espaço entre os ícones */
+}
+
+.linha{
+  position: absolute;
+  top: 155px;
+  right: -10px;
+  width: 210px; /* A linha ocupará toda a largura disponível */
+  padding-right: 120px;
+  height: 2px; /* A espessura da linha */
+  background-color: #ddd; /* Cor da linha, ajustada para um tom de cinza claro */
+  margin: 10px 0; /* Espaço acima e abaixo da linha */
 }
