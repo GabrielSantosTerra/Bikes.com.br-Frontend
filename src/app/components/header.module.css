@@ -153,7 +153,6 @@
   margin-right: 10px;
 }
 
-
 .closeArrow {
   display: flex;
   flex-direction: column;
@@ -182,12 +181,12 @@
     justify-content: center;
     gap: 20px;
   }
-  .dropdownTitle{
+  .dropdownTitle {
     word-break: break-all;
     font-size: medium;
     font-weight: 600;
   }
-  .dropdownEmail{
+  .dropdownEmail {
     word-break: break-all;
     font-size: medium;
     font-weight: 600;
@@ -206,25 +205,26 @@
   }
 }
 
+.hamburgerIcon {
+  display: none; /* Escondido por padrão */
+}
+
 @media (max-width: 720px) {
-  .sectionB {
-    display: none; /* Esconde os links na versão mobile */
-  }
-
+  .sectionB,
   .sectionC {
-    display: none; /* Esconde os ícones na versão mobile */
+    display: none; /* Esconde os menus normais no mobile */
   }
 
-  .hamburger {
-    display: flex; /* Mostra o ícone de hambúrguer */
-    flex-direction: column;
+  .hamburgerIcon {
+    display: block;
+    font-size: 20px;
+    color: #000;
     cursor: pointer;
-    justify-content: end;
-    align-items: end;
-    position: absolute; /* Garante que o hambúrguer fique posicionado de maneira absoluta */
-    right: 20px; /* Alinha o hambúrguer à direita */
-    top: 50%; /* Centraliza verticalmente */
-    transform: translateY(-50%); /* Ajusta para a centralização perfeita */
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1000;
   }
 
   .hamburger span {
@@ -240,7 +240,7 @@
 
   .hamburger.open span:nth-child(1) {
     transform: rotate(45deg);
-    transform-origin: top left;
+
   }
 
   .hamburger.open span:nth-child(2) {
@@ -250,6 +250,10 @@
   .hamburger.open span:nth-child(3) {
     transform: rotate(-48deg);
     transform-origin: bottom left;
+  }
+
+  .drawer-open .hamburgerIcon {
+    z-index: -1; /* Ícone atrás do Drawer */
   }
 }
 
@@ -274,7 +278,7 @@
       font-size: 15px; /* Reduz o tamanho da fonte dos links no menu lateral */
       gap: 15px; /* Ajusta o espaçamento entre os itens */
     }
-    .linha{
+    .linha {
       position: absolute;
       top: 235px;
       right: -20px;
@@ -284,12 +288,11 @@
       background-color: #ddd; /* Cor da linha, ajustada para um tom de cinza claro */
       margin: 10px 0; /* Espaço acima e abaixo da linha */
     }
-    .NameConfiguração{
+    .NameConfiguração {
       font-size: 10px;
       font-weight: 600;
     }
   }
-  
 }
 
 /* Botão de fechar no menu lateral */
@@ -353,7 +356,7 @@
   gap: 10px; /* Reduz o espaço entre os ícones */
 }
 
-.linha{
+.linha {
   position: absolute;
   top: 155px;
   right: -10px;

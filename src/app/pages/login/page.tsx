@@ -4,11 +4,12 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import styles from './login.module.css';
 import { FaArrowRightToBracket } from "react-icons/fa6";
+import api from "@/services/api";
 
 const LoginForm = () => {
   const [formData, setFormData] = useState({
-    email: "",
-    password: "",
+    email: "gabrielsantosterra@gmail.com",
+    password: "123456789",
   });
 
   const [message, setMessage] = useState<string | null>(null);
@@ -24,39 +25,26 @@ const LoginForm = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsLoading(true);
     setMessage(null);
-    setIsSuccess(null);
-    setIsLoading(true); // Ativa o estado de carregamento
 
     try {
-      const response = await fetch("http://localhost:3000/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+      const response = await api.post("/auth/login", formData);
 
-      if (response.ok) {
-        const data = await response.json();
+      if (response.status === 200) {
+        const { access_token, user } = response.data;
+        document.cookie = `authToken=${access_token}; path=/`;
+        localStorage.setItem("authToken", access_token);
+        localStorage.setItem("userName", user.name);
+        localStorage.setItem("userEmail", user.email);
 
-        document.cookie = `authToken=${data.token}; path=/`;
-        localStorage.setItem("userName", data.user.name);
-        localStorage.setItem("userEmail", data.user.email);
-
-        setIsSuccess(true);
         router.push("/pages/home");
-      } else {
-        const errorData = await response.json();
-        setMessage(errorData.message || "Erro ao realizar login.");
-        setIsSuccess(false);
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error("Erro na requisição:", error);
-      setMessage("Erro ao conectar-se ao servidor. Tente novamente.");
-      setIsSuccess(false);
+      setMessage(error.response?.data?.message || "Erro ao realizar login.");
     } finally {
-      setIsLoading(false); // Desativa o estado de carregamento
+      setIsLoading(false);
     }
   };
 
@@ -66,6 +54,7 @@ const LoginForm = () => {
       <div className={styles.form}>
         <form onSubmit={handleSubmit}>
           <div className={styles["form-group"]}>
+            
             <label htmlFor="email" className={styles.label}>
               E-mail:
             </label>

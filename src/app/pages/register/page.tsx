@@ -6,27 +6,28 @@ import styles from './register.module.css';
 import { FaArrowRightToBracket } from "react-icons/fa6";
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebook } from "react-icons/fa";
+import api from "@/services/api";
+
 
 const RegisterForm = () => {
   const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    password: "",
-    cpf: "",
-    phone: "",
-    birth_date: "",
+    name: "Gabriel Santos Terra",
+    email: "gabrielsantosterra@gmail.com",
+    password: "123456789",
+    cpf: "118.767.159-28",
+    phone: "46999076301",
+    birth_date: "2008-01-23",
   });
 
   const [message, setMessage] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-
   const router = useRouter();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
-
+  
   const handleGoogleSignup = () => {
     console.log("Cadastro com Google iniciado");
     // Aqui você integraria o SDK do Google para autenticação
@@ -40,24 +41,22 @@ const RegisterForm = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
+    setMessage(null);
 
     if (Object.values(formData).some((value) => value.trim() === "")) {
       setMessage("Todos os campos são obrigatórios!");
+      setIsLoading(false);
       return;
     }
 
     try {
-      const response = await fetch("http://localhost:3000/registerUser", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
 
-      if (response.ok) {
-        const data = await response.json();
-        router.push("/pages/home")
+      console.log(formData)
+
+      const response = await api.post("/users/", formData); // Usando Axios
+
+      if (response.status === 201 || response.status === 200) {
+        router.push("/pages/home");
         setFormData({
           name: "",
           email: "",
@@ -66,18 +65,14 @@ const RegisterForm = () => {
           phone: "",
           birth_date: "",
         });
-      } else {
-        const errorData = await response.json();
-        setMessage(errorData.message || "Erro ao realizar o cadastro.");
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error("Erro na requisição:", error);
-      setMessage("Erro ao conectar-se ao servidor. Tente novamente.");
+      setMessage(error.response?.data?.message || "Erro ao conectar-se ao servidor.");
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
   };
-
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>Cadastro</h1>

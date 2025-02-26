@@ -17,7 +17,7 @@ const About = () => {
       />
     </div>
     <div className={styles.descricao}>
-      <h1 className={styles.Titulo}>Quem somos?</h1>
+      <h1 className={styles.Titulo}>Quem somos </h1>
       <p>
         A Bikes.com.br está sendo pensada para se tornar a referência
         nacional quando se tratar das atividades relacionadas ao ciclismo.
