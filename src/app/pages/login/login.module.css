@@ -23,7 +23,7 @@
 
 .form{
   background-color: white;
-  padding: 20px;
+  padding: 50px;
   border-radius: 10px;
   position: relative;
   z-index: 2;
@@ -39,7 +39,7 @@
 }
 
 .form-group {
-  margin-bottom: 15px;
+  padding: 5px;
 }
 
 .label {
@@ -52,6 +52,30 @@
   padding: 10px;
   border-radius: 5px;
   border: 1px solid #ccc;
+}
+.eyeIcon {
+  font-size: 25px;
+  position: absolute;
+  right: 10px;
+  top: 68%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out; /* Animação de rotação */
+}
+
+.rotate-icon {
+  transform: translateY(-50%) rotate(180deg); /* Rotaciona o ícone */
+}
+
+.links{
+  font-size: small;
+  display: flex;
+  gap: 40px;
+  padding: 10px;
+}
+.links :hover{
+  color: #09BC8A;
+  
 }
 
 .button {

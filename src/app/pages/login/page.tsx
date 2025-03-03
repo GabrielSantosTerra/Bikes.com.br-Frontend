@@ -2,8 +2,10 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import styles from './login.module.css';
+import styles from "./login.module.css";
 import { FaArrowRightToBracket } from "react-icons/fa6";
+import { IoEyeSharp } from "react-icons/io5";
+import { FaEyeSlash } from "react-icons/fa";
 import api from "@/services/api";
 
 const LoginForm = () => {
@@ -11,10 +13,11 @@ const LoginForm = () => {
     email: "gabrielsantosterra@gmail.com",
     password: "123456789",
   });
-
+  
   const [message, setMessage] = useState<string | null>(null);
   const [isSuccess, setIsSuccess] = useState<boolean | null>(null);
-  const [isLoading, setIsLoading] = useState<boolean>(false); // Estado para controlar o carregamento
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [showPassword, setShowPassword] = useState<boolean>(false);
 
   const router = useRouter();
 
@@ -54,10 +57,7 @@ const LoginForm = () => {
       <div className={styles.form}>
         <form onSubmit={handleSubmit}>
           <div className={styles["form-group"]}>
-            
-            <label htmlFor="email" className={styles.label}>
-              E-mail:
-            </label>
+            <label htmlFor="email" className={styles.label}>E-mail:</label>
             <input
               type="email"
               id="email"
@@ -70,22 +70,32 @@ const LoginForm = () => {
             />
           </div>
 
-          <div className={styles["form-group"]}>
-            <label htmlFor="password" className={styles.label}>
-              Senha:
-            </label>
+          <div className={styles["form-group"]} style={{ position: "relative" }}>
+            <label htmlFor="password" className={styles.label}>Senha:</label>
             <input
-              type="password"
+              type={showPassword ? "text" : "password"}
               id="password"
               name="password"
               value={formData.password}
               onChange={handleChange}
               placeholder="Digite sua senha"
               className={styles.input}
+              maxLength={25}  // Limita o número de caracteres a 30
               required
             />
+            <span
+              className={`${styles.eyeIcon} ${showPassword ? styles["rotate-icon"] : ""}`}
+              onClick={() => setShowPassword(!showPassword)}
+            >
+              {showPassword ? <FaEyeSlash /> : <IoEyeSharp />}
+            </span>
           </div>
-
+          
+          <div className={styles.links}>
+            <a href="#">Esqueceu sua senha</a>
+            <a href="../pages/register">Cadastre-se</a>
+          </div>
+          
           <button type="submit" className={styles.button} disabled={isLoading}>
             {isLoading ? (
               <span className={styles.spinner}></span>
