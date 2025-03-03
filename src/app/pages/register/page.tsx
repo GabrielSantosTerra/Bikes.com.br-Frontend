@@ -181,6 +181,7 @@ const RegisterForm = () => {
               onChange={handleChange}
               placeholder="Digite sua senha"
               className={styles.input}
+              maxLength={20}  
               required
             />
           </div>

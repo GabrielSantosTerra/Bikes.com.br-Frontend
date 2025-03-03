@@ -80,7 +80,7 @@ const LoginForm = () => {
               onChange={handleChange}
               placeholder="Digite sua senha"
               className={styles.input}
-              maxLength={25}  // Limita o número de caracteres a 30
+              maxLength={20}  // Limita o número de caracteres a 30
               required
             />
             <span
