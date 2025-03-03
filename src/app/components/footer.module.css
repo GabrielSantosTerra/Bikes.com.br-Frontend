@@ -8,7 +8,7 @@
   .form-group{
     padding-top: 150px;
     display: grid;
-    padding-right: 100px;
+    padding-right: 50px;
   }
   .sectionImput{
     display: grid;
@@ -17,8 +17,7 @@
 
   .container {
     display: flex;
-    padding-left: 100px;
-    padding-right: 100px;
+    padding-left: 150px;
     gap: 100px;
     padding-top: 20px;
   }
