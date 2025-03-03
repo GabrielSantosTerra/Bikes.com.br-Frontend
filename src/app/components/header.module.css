@@ -44,6 +44,16 @@
   transform: translateY(-50%); /* Centraliza verticalmente */
   display: flex;
   justify-content: flex-end;
+  align-items: center;
+  gap: 15px;
+}
+
+.loginLink {
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+  text-decoration: none;
+  transition: color 0.3s ease-in-out;
 }
 
 .logo {

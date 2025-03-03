@@ -80,3 +80,26 @@
   font-weight: 100;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
+
+.overlayText {
+  position: absolute;
+  top: 50%; /* Centraliza verticalmente com base na imagem */
+  left: 50%; /* Centraliza horizontalmente */
+  transform: translate(-50%, -50%); /* Ajusta para que o centro do texto fique no meio */
+  color: white;
+  font-size: 40px;
+  font-weight: 700;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  text-align: center;
+  width: 100%;
+}
+
+.imageContainer {
+  position: relative;
+  width: 100%;
+  height: 368px; /* Altura da imagem de fundo */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+

@@ -12,7 +12,9 @@ import {
   HiPencil,
   HiShoppingBag,
   HiUsers,
+  HiPhone,
 } from 'react-icons/hi';
+import { CiLogout } from 'react-icons/ci';
 import api from '@/services/api';
 
 const Header = () => {
@@ -20,6 +22,7 @@ const Header = () => {
     null
   );
   const [isOpen, setIsOpen] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const handleClose = () => setIsOpen(false);
   const [isMobile, setIsMobile] = useState(false);
   const router = useRouter();
@@ -27,10 +30,13 @@ const Header = () => {
   useEffect(() => {
     const name = localStorage.getItem('userName');
     const email = localStorage.getItem('userEmail');
+    const token = localStorage.getItem('authToken');
 
     if (name && email) {
       setUser({ name, email });
     }
+
+    setIsAuthenticated(!!token);
   }, []);
 
   useEffect(() => {
@@ -47,34 +53,40 @@ const Header = () => {
   const logout = async () => {
     try {
       const token = localStorage.getItem('authToken'); // Pegando o token salvo
-  
+
       if (!token) {
-        console.error("Nenhum token encontrado.");
+        console.error('Nenhum token encontrado.');
         router.push('/pages/login');
         return;
       }
-  
-      await api.post('/auth/logout', {}, {
-        headers: {
-          Authorization: `Bearer ${token}` // Enviando o token no cabeçalho
-        },
-        withCredentials: true // Permite o envio de cookies
-      });
-  
+
+      await api.post(
+        '/auth/logout',
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`, // Enviando o token no cabeçalho
+          },
+          withCredentials: true, // Permite o envio de cookies
+        }
+      );
+
       // Remove os dados do usuário do localStorage
       localStorage.removeItem('authToken');
       localStorage.removeItem('userName');
       localStorage.removeItem('userEmail');
-  
+
       // Redireciona para login
       router.push('/pages/login');
-  
-    } catch (error: any) {  // 🔹 Correção: Definir error como 'any'
-      console.error('Erro ao deslogar:', error?.response?.data || error?.message || error);
+    } catch (error: any) {
+      // 🔹 Correção: Definir error como 'any'
+      console.error(
+        'Erro ao deslogar:',
+        error?.response?.data || error?.message || error
+      );
     }
   };
-  
-  
+
   return (
     <header className={`${styles.header} ${isOpen ? styles.drawerOpen : ''}`}>
       <div className={styles.sectionA}>
@@ -91,8 +103,8 @@ const Header = () => {
       <nav className={styles.sectionB}>
         <div className={styles.navLinks}>
           <a href="/pages/about">Quem somos</a>
-          <a href="#buy">Comprar</a>
-          <a href="#sell">Vender</a>
+          <a href="/pages/home">Comprar</a>
+          <a href="/pages/sell">Vender</a>
           <a href="#contact">Contato</a>
         </div>
       </nav>
@@ -110,59 +122,41 @@ const Header = () => {
           />
         </a>
 
-        <Dropdown
-          arrowIcon={false}
-          inline
-          label={
-            <img
-              src="/img/user.png"
-              alt="Usuário"
-              className={styles.avatarIcon}
-            />
-          }
-        >
-          <Dropdown.Header>
-            <h1 className={styles.dropdownTitle}>{user?.name || 'Usuário'}</h1>
-            <h1 className={styles.dropdownEmail}>
-              {user?.email || 'Email não encontrado'}
-            </h1>
-          </Dropdown.Header>
-          <Dropdown.Item>Dashboard</Dropdown.Item>
-          <Dropdown.Item>Configurações</Dropdown.Item>
-          <Dropdown.Item>Ganhos</Dropdown.Item>
-          <Dropdown.Divider />
-          <Dropdown.Item onClick={logout}>Sair</Dropdown.Item>
-        </Dropdown>
-
-        <a href="https://wa.me/" target="_blank" rel="noopener noreferrer">
-          <img
-            src="/img/whatsapp.png"
-            alt="WhatsApp"
-            className={styles.socialIcon}
-          />
-        </a>
-        <a
-          href="https://www.instagram.com/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <img
-            src="/img/instagram.png"
-            alt="Instagram"
-            className={styles.socialIcon}
-          />
-        </a>
-        <a
-          href="https://www.facebook.com/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <img
-            src="/img/facebook.png"
-            alt="Facebook"
-            className={styles.socialIcon}
-          />
-        </a>
+        {isAuthenticated ? (
+          <Dropdown
+            arrowIcon={false}
+            inline
+            label={
+              <img
+                src="/img/user.png"
+                alt="Usuário"
+                className={styles.avatarIcon}
+              />
+            }
+          >
+            <Dropdown.Header>
+              <h1 className={styles.dropdownTitle}>
+                {user?.name || 'Usuário'}
+              </h1>
+              <h1 className={styles.dropdownEmail}>
+                {user?.email || 'Email não encontrado'}
+              </h1>
+            </Dropdown.Header>
+            <Dropdown.Item>Dashboard</Dropdown.Item>
+            <Dropdown.Item>Configurações</Dropdown.Item>
+            <Dropdown.Item>Ganhos</Dropdown.Item>
+            
+            <Dropdown.Divider />
+            <Dropdown.Item onClick={logout}>
+              <CiLogout />
+              Sair
+            </Dropdown.Item>
+          </Dropdown>
+        ) : (
+          <a href="/pages/login" className={styles.loginLink}>
+            Entrar
+          </a>
+        )}
       </div>
 
       {/* Ícone do Menu Mobile (só aparece em telas pequenas e some quando o Drawer abre) */}
