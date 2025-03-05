@@ -1,22 +1,21 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import styles from './register.module.css';
-import { FaArrowRightToBracket } from "react-icons/fa6";
-import { FcGoogle } from "react-icons/fc";
-import { FaFacebook } from "react-icons/fa";
-import api from "@/services/api";
-
+import { FaArrowRightToBracket } from 'react-icons/fa6';
+import { FcGoogle } from 'react-icons/fc';
+import { FaFacebook } from 'react-icons/fa';
+import api from '@/services/api';
 
 const RegisterForm = () => {
   const [formData, setFormData] = useState({
-    name: "Gabriel Santos Terra",
-    email: "gabrielsantosterra@gmail.com",
-    password: "123456789",
-    cpf: "118.767.159-28",
-    phone: "46999076301",
-    birth_date: "2008-01-23",
+    name: 'Gabriel Santos Terra',
+    email: 'gabrielsantosterra@gmail.com',
+    password: '123456789',
+    cpf: '118.767.159-28',
+    phone: '46999076301',
+    birth_date: '2008-01-23',
   });
 
   const [message, setMessage] = useState<string | null>(null);
@@ -27,14 +26,14 @@ const RegisterForm = () => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
-  
+
   const handleGoogleSignup = () => {
-    console.log("Cadastro com Google iniciado");
+    console.log('Cadastro com Google iniciado');
     // Aqui você integraria o SDK do Google para autenticação
   };
 
   const handleFacebookSignup = () => {
-    console.log("Cadastro com Facebook iniciado");
+    console.log('Cadastro com Facebook iniciado');
     // Aqui você integraria o SDK do Facebook para autenticação
   };
 
@@ -43,32 +42,56 @@ const RegisterForm = () => {
     setIsLoading(true);
     setMessage(null);
 
-    if (Object.values(formData).some((value) => value.trim() === "")) {
-      setMessage("Todos os campos são obrigatórios!");
+    if (Object.values(formData).some((value) => value.trim() === '')) {
+      setMessage('Todos os campos são obrigatórios!');
       setIsLoading(false);
       return;
     }
 
     try {
+      console.log(formData);
 
-      console.log(formData)
-
-      const response = await api.post("/users/", formData); // Usando Axios
+      const response = await api.post('/users/', formData); // Usando Axios
 
       if (response.status === 201 || response.status === 200) {
-        router.push("/pages/home");
+        router.push('/pages/home');
         setFormData({
-          name: "",
-          email: "",
-          password: "",
-          cpf: "",
-          phone: "",
-          birth_date: "",
+          name: '',
+          email: '',
+          password: '',
+          cpf: '',
+          phone: '',
+          birth_date: '',
         });
       }
+
+      e.preventDefault();
+      setIsLoading(true);
+      setMessage(null);
+
+      try {
+        const response = await api.post('/auth/login', formData);
+
+        if (response.status === 200) {
+          const { access_token, user } = response.data;
+          document.cookie = `authToken=${access_token}; path=/`;
+          localStorage.setItem('authToken', access_token);
+          localStorage.setItem('userName', user.name);
+          localStorage.setItem('userEmail', user.email);
+
+          router.push('/pages/home');
+        }
+      } catch (error: any) {
+        console.error('Erro na requisição:', error);
+        setMessage(error.response?.data?.message || 'Erro ao realizar login.');
+      } finally {
+        setIsLoading(false);
+      }
     } catch (error: any) {
-      console.error("Erro na requisição:", error);
-      setMessage(error.response?.data?.message || "Erro ao conectar-se ao servidor.");
+      console.error('Erro na requisição:', error);
+      setMessage(
+        error.response?.data?.message || 'Erro ao conectar-se ao servidor.'
+      );
     } finally {
       setIsLoading(false);
     }
@@ -81,12 +104,15 @@ const RegisterForm = () => {
         <button onClick={handleGoogleSignup} className={styles.googleButton}>
           <FcGoogle size={20} /> Criar conta com Google
         </button>
-        <button onClick={handleFacebookSignup} className={styles.facebookButton}>
+        <button
+          onClick={handleFacebookSignup}
+          className={styles.facebookButton}
+        >
           <FaFacebook size={20} /> Criar conta com Facebook
         </button>
 
         <form onSubmit={handleSubmit}>
-          <div className={styles["form-group"]}>
+          <div className={styles['form-group']}>
             <label htmlFor="name" className={styles.label}>
               Nome:
             </label>
@@ -103,7 +129,7 @@ const RegisterForm = () => {
           </div>
 
           <div className={styles.row}>
-            <div className={styles["form-group"]}>
+            <div className={styles['form-group']}>
               <label htmlFor="cpf" className={styles.label}>
                 CPF:
               </label>
@@ -119,7 +145,7 @@ const RegisterForm = () => {
               />
             </div>
 
-            <div className={styles["form-group"]}>
+            <div className={styles['form-group']}>
               <label htmlFor="birth_date" className={styles.label}>
                 Data de Nascimento:
               </label>
@@ -136,7 +162,7 @@ const RegisterForm = () => {
           </div>
 
           <div className={styles.row}>
-            <div className={styles["form-group"]}>
+            <div className={styles['form-group']}>
               <label htmlFor="phone" className={styles.label}>
                 Telefone:
               </label>
@@ -152,7 +178,7 @@ const RegisterForm = () => {
               />
             </div>
 
-            <div className={styles["form-group"]}>
+            <div className={styles['form-group']}>
               <label htmlFor="email" className={styles.label}>
                 E-mail:
               </label>
@@ -169,7 +195,7 @@ const RegisterForm = () => {
             </div>
           </div>
 
-          <div className={styles["form-group"]}>
+          <div className={styles['form-group']}>
             <label htmlFor="password" className={styles.label}>
               Senha:
             </label>
@@ -181,7 +207,7 @@ const RegisterForm = () => {
               onChange={handleChange}
               placeholder="Digite sua senha"
               className={styles.input}
-              maxLength={20}  
+              maxLength={20}
               required
             />
           </div>
@@ -189,10 +215,10 @@ const RegisterForm = () => {
           <button type="submit" className={styles.button} disabled={isLoading}>
             {isLoading ? (
               <span className={styles.spinner}></span>
-            ):(
-            <>
-              Cadastrar <FaArrowRightToBracket />
-            </>
+            ) : (
+              <>
+                Cadastrar <FaArrowRightToBracket />
+              </>
             )}
           </button>
         </form>

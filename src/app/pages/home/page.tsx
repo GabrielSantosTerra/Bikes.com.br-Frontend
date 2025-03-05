@@ -217,7 +217,7 @@ const Home = () => {
             ))}
           </div>
 
-          <button className={styles.instagramButton}>📷 Siga-nos agora</button>
+          <a href='https://www.instagram.com/bikescombr/'><button className={styles.instagramButton}>📷 Siga-nos agora</button></a>
         </div>
       </main>
 
