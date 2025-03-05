@@ -13,8 +13,11 @@ import {
   HiShoppingBag,
   HiUsers,
   HiPhone,
+  HiCog,
+  HiHome,
 } from 'react-icons/hi';
-import { CiLogout } from 'react-icons/ci';
+import { BiLogOut } from 'react-icons/bi';
+import { IoPersonCircle } from 'react-icons/io5';
 import api from '@/services/api';
 
 const Header = () => {
@@ -142,14 +145,25 @@ const Header = () => {
                 {user?.email || 'Email não encontrado'}
               </h1>
             </Dropdown.Header>
-            <Dropdown.Item>Dashboard</Dropdown.Item>
-            <Dropdown.Item>Configurações</Dropdown.Item>
-            <Dropdown.Item>Ganhos</Dropdown.Item>
-            
+            <Dropdown.Item>
+              <HiHome />
+              <div className="pl-3">Home</div>
+            </Dropdown.Item>
+            <Dropdown.Item>
+              <HiCog />
+              {/* configurações da página: notificações etc. */}
+              <div className="pl-3">Configurações</div>
+            </Dropdown.Item>
+            <Dropdown.Item>
+              <IoPersonCircle />
+              {/* configurações do usuário */}
+              <div className="pl-3">Perfil</div>
+            </Dropdown.Item>
+
             <Dropdown.Divider />
             <Dropdown.Item onClick={logout}>
-              <CiLogout />
-              Sair
+              <BiLogOut />
+              <div className='pl-3'>Sair</div>
             </Dropdown.Item>
           </Dropdown>
         ) : (
