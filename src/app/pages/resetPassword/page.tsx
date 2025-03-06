@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import api from "@/services/api";
 import styles from "./resetPassword.module.css";
+import { IoEyeSharp } from "react-icons/io5";
+import { FaEyeSlash } from "react-icons/fa";
 
 const ResetPassword = () => {
   const [formData, setFormData] = useState({
@@ -12,6 +14,9 @@ const ResetPassword = () => {
   });
   const [message, setMessage] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [showNewPassword, setShowNewPassword] = useState<boolean>(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState<boolean>(false);
+
   const router = useRouter();
   const searchParams = useSearchParams();
   const token = searchParams.get("token"); // Pega o token da URL
@@ -63,29 +68,49 @@ const ResetPassword = () => {
         <p className={styles.error}>Token inválido. Solicite novamente.</p>
       ) : (
         <form onSubmit={handleSubmit} className={styles.form}>
-          <label className={styles.label}>Nova senha</label>
-          <input
-            type="password"
-            name="newPassword"
-            value={formData.newPassword}
-            onChange={handleChange}
-            className={styles.input}
-            required
-          />
+          <div className={styles.inputGroup}>
+            <input
+              type={showNewPassword ? "text" : "password"}
+              name="newPassword"
+              value={formData.newPassword}
+              onChange={handleChange}
+              className={styles.input}
+              placeholder="Digite sua nova senha"
+              required
+            />
+            <span
+              className={`${styles.eyeIcon} ${showNewPassword ? styles.rotateIcon : ""}`}
+              onClick={() => setShowNewPassword(!showNewPassword)}
+            >
+              {showNewPassword ? <FaEyeSlash /> : <IoEyeSharp />}
+            </span>
 
-          <label className={styles.label}>Confirmar senha</label>
-          <input
-            type="password"
-            name="confirmPassword"
-            value={formData.confirmPassword}
-            onChange={handleChange}
-            className={styles.input}
-            required
-          />
+          </div>
 
-          <button type="submit" className={styles.button} disabled={isLoading}>
-            {isLoading ? "Alterando..." : "Redefinir Senha"}
-          </button>
+          <div className={styles.inputGroup}>
+            <input
+              type={showConfirmPassword ? "text" : "password"}
+              name="confirmPassword"
+              value={formData.confirmPassword}
+              onChange={handleChange}
+              className={styles.input}
+              placeholder="Confirme sua nova senha"
+              required
+            />
+            <span
+                className={`${styles.eyeIcon} ${showConfirmPassword ? styles.rotateIcon : ""}`}
+                onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+              >
+                {showConfirmPassword ? <FaEyeSlash /> : <IoEyeSharp />}
+              </span>
+
+          </div>
+
+          <div className={styles.buttonDiv}>
+            <button type="submit" className={styles.button} disabled={isLoading}>
+              {isLoading ? "Alterando..." : "Redefinir Senha"}
+            </button>
+          </div>
         </form>
       )}
     </div>

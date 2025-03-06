@@ -1,102 +1,119 @@
 .container {
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-image: url('/img/fundo-cadastro.jpg');
-    background-size: cover;
-    background-position: center;
-    position: relative;
-  }
-  
-  .container::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(9, 200, 140, 0.4);
-    z-index: 1;
-  }
-  
-  .form {
-    background-color: white;
-    padding: 20px;
-    border-radius: 10px;
-    position: relative;
-    z-index: 2;
-    width: 100%;
-    max-width: 500px;
-  }
-  
-  .title {
-    text-align: center;
-    font-size: 2rem;
-    font-weight: bold;
-    margin-bottom: 20px;
-    color: white;
-    z-index: 1;
-  }
-  
-  .form-group {
-    margin-bottom: 15px;
-    width: 100%; /* Garante que o grupo ocupe a largura total */
-  }
-  
-  .row {
-    display: flex;
-    gap: 10px; /* Espaço entre os campos */
-  }
-  
-  .row > .form-group {
-    flex: 1; /* Faz os campos compartilharem igualmente o espaço */
-  }
-  
-  .input {
-    width: 100%; /* Garante que os campos ocupem toda a largura do grupo */
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    box-sizing: border-box; /* Inclui padding e border na largura total */
-  }
-  
-  .input[type="date"] {
-    appearance: none; /* Remove estilos padrão do navegador */
-    -webkit-appearance: none; /* Para compatibilidade com Safari */
-  }
-  
-  .button {
-    width: 100%;
-    padding: 10px;
-    border-radius: 5px;
-    border: none;
-    background: linear-gradient(to right, #09BC8A, #0C1B33);
-    color: white;
-    font-weight: bold;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
-    transition: background-color 0.3s ease;
-  }
-  
-  .message {
-    text-align: center;
-    margin-top: 15px;
-  }
-  
-  .message-success {
-    color: green;
-  }
-  
-  .message-error {
-    color: red;
-  }
-  
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-image: url("/img/fundo-cadastro.jpg");
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(9, 200, 140, 0.4);
+  z-index: 1;
+}
+
+.form {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 500px;
+}
+
+.title {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: white;
+  z-index: 1;
+}
+
+.form-group {
+  margin-bottom: 15px;
+  width: 100%;
+}
+
+.row {
+  display: flex;
+  gap: 10px;
+}
+
+.row > .form-group {
+  flex: 1;
+}
+
+.label {
+  display: block;
+  margin-bottom: 8px; /* Add space between label and input */
+  font-weight: 500; /* Make the label slightly bolder */
+}
+
+.input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  outline: none;
+  transition: all 0.3s ease;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+}
+
+.input:focus {
+  border-color: #09bc8a;
+  background-color: #eafaf2;
+  box-shadow: 0 0 10px rgba(9, 188, 138, 0.6);
+}
+
+.input[type="date"] {
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.button {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  background: linear-gradient(to right, #09bc8a, #0c1b33);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.message {
+  text-align: center;
+  margin-top: 15px;
+}
+
+.message-success {
+  color: green;
+}
+
+.message-error {
+  color: red;
+}
+
 .googleButton,
 .facebookButton {
   width: 100%;
@@ -149,3 +166,4 @@
     transform: rotate(360deg);
   }
 }
+

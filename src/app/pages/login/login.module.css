@@ -5,14 +5,14 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-image: url('/img/fundo-cadastro.jpg');
+  background-image: url("/img/fundo-cadastro.jpg");
   background-size: cover;
   background-position: center;
   position: relative;
 }
 
-.container::before{
-  content: '';
+.container::before {
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -21,7 +21,7 @@
   background-color: rgba(9, 200, 140, 0.4);
 }
 
-.form{
+.form {
   background-color: white;
   padding: 50px;
   border-radius: 10px;
@@ -48,34 +48,45 @@
 }
 
 .input {
-  width: 100%;
-  padding: 10px;
-  border-radius: 5px;
+  width: 250px;
+  padding: 12px;
+  border-radius: 8px;
   border: 1px solid #ccc;
+  font-size: 16px;
+  outline: none;
+  transition: all 0.3s ease;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
+
+.input:focus {
+  border-color: #09bc8a;
+  background-color: #eafaf2;
+  box-shadow: 0 0 10px rgba(9, 188, 138, 0.6);
+}
+
 .eyeIcon {
   font-size: 25px;
   position: absolute;
-  right: 10px;
+  right: 15px;
   top: 68%;
   transform: translateY(-50%);
   cursor: pointer;
-  transition: transform 0.3s ease-in-out; /* Animação de rotação */
+  transition: transform 0.3s ease-in-out;
 }
 
 .rotate-icon {
-  transform: translateY(-50%) rotate(180deg); /* Rotaciona o ícone */
+  transform: translateY(-50%) rotate(180deg);
 }
 
-.links{
+.links {
   font-size: small;
   display: flex;
-  gap: 40px;
+  gap: 60px;
   padding: 10px;
 }
-.links :hover{
-  color: #09BC8A;
-  
+.links :hover {
+  color: #09bc8a;
 }
 
 .button {
@@ -83,7 +94,7 @@
   padding: 10px;
   border-radius: 5px;
   border: none;
-  background: linear-gradient(to right, #09BC8A, #0C1B33);
+  background: linear-gradient(to right, #09bc8a, #0c1b33);
   color: white;
   font-weight: bold;
   cursor: pointer;
@@ -107,8 +118,8 @@
 }
 
 .spinner {
-  border: 2px solid #ccc; /* Cor do anel de fundo */
-  border-top: 2px solid white; /* Cor do anel ativo */
+  border: 2px solid #ccc;
+  border-top: 2px solid white;
   border-radius: 50%;
   width: 20px;
   height: 20px;
@@ -123,3 +134,4 @@
     transform: rotate(360deg);
   }
 }
+

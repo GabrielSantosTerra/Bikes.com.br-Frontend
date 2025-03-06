@@ -92,7 +92,7 @@ const LoginForm = () => {
           </div>
           
           <div className={styles.links}>
-            <a href="#">Esqueceu sua senha</a>
+            <a href="../pages/password">Esqueceu sua senha</a>
             <a href="../pages/register">Cadastre-se</a>
           </div>
           
