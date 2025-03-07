@@ -212,6 +212,12 @@ const RegisterForm = () => {
             />
           </div>
 
+          <div className={styles.Textlinks}>
+            <p>Ja tem conta? Faça o</p>
+            <a href="../pages/login" className={styles.links}>Login</a>
+            <p>!</p>
+          </div>
+
           <button type="submit" className={styles.button} disabled={isLoading}>
             {isLoading ? (
               <span className={styles.spinner}></span>

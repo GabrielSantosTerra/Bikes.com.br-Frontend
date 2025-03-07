@@ -53,6 +53,7 @@
   border-radius: 5px;
   border: 1px solid #ccc;
 }
+
 .eyeIcon {
   font-size: 25px;
   position: absolute;
@@ -73,6 +74,7 @@
   gap: 40px;
   padding: 10px;
 }
+
 .links :hover{
   color: #09BC8A;
   

@@ -157,7 +157,7 @@ const Header = () => {
             <Dropdown.Item>
               <IoPersonCircle />
               {/* configurações do usuário */}
-              <div className="pl-3">Perfil</div>
+              <div className="pl-3"><a href="/pages/user">Perfil</a></div>
             </Dropdown.Item>
 
             <Dropdown.Divider />
