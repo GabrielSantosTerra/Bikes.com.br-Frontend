@@ -86,13 +86,9 @@
   padding: 10px;
 }
 
-
 .links :hover{
   color: #09BC8A;
   
-
-.links :hover {
-  color: #09bc8a;
 }
 
 .button {
@@ -139,5 +135,4 @@
   to {
     transform: rotate(360deg);
   }
-}
 }
