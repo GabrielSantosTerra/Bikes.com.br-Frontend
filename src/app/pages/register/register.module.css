@@ -5,6 +5,7 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
+
   background-image: url('/img/fundo-cadastro.jpg');
   background-size: cover;
   background-position: center;
@@ -12,7 +13,7 @@
 }
 
 .container::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -66,6 +67,41 @@
 .input[type='date'] {
   appearance: none; /* Remove estilos padrão do navegador */
   -webkit-appearance: none; /* Para compatibilidade com Safari */
+  gap: 10px;
+}
+
+.row > .form-group {
+  flex: 1;
+}
+
+.label {
+  display: block;
+  margin-bottom: 8px; /* Add space between label and input */
+  font-weight: 500; /* Make the label slightly bolder */
+}
+
+.input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  outline: none;
+  transition: all 0.3s ease;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+}
+
+.input:focus {
+  border-color: #09bc8a;
+  background-color: #eafaf2;
+  box-shadow: 0 0 10px rgba(9, 188, 138, 0.6);
+}
+
+.input[type="date"] {
+  appearance: none;
+  -webkit-appearance: none;
 }
 
 .button {
